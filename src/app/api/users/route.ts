@@ -4,18 +4,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 import type { User } from '@/types/user';
 
+const NAMES = [
+  'Arjun Sharma', 'Priya Patel', 'Rahul Gupta', 'Ananya Singh', 'Vikram Nair',
+  'Deepika Menon', 'Rohan Verma', 'Sneha Iyer', 'Amit Joshi', 'Kavya Reddy',
+  'Siddharth Khanna', 'Meera Agarwal', 'Karan Malhotra', 'Pooja Sinha', 'Dev Kapoor',
+] as const;
+
+const DEPARTMENTS = ['Engineering', 'Marketing', 'Sales', 'Design', 'Product'] as const;
+
+const STATUSES = ['active', 'active', 'active', 'inactive', 'suspended'] as const;
+const ROLES = ['admin', 'editor', 'viewer'] as const;
+
 // Simulated dataset
 const MOCK_USERS: User[] = Array.from({ length: 47 }, (_, i) => ({
   id: `usr_${String(i + 1).padStart(4, '0')}`,
-  name: [
-    'Arjun Sharma', 'Priya Patel', 'Rahul Gupta', 'Ananya Singh', 'Vikram Nair',
-    'Deepika Menon', 'Rohan Verma', 'Sneha Iyer', 'Amit Joshi', 'Kavya Reddy',
-    'Siddharth Khanna', 'Meera Agarwal', 'Karan Malhotra', 'Pooja Sinha', 'Dev Kapoor',
-  ][i % 15],
+  name: NAMES[i % NAMES.length]!,
   email: `user${i + 1}@acme.io`,
-  role: (['admin', 'editor', 'viewer'] as const)[i % 3],
-  status: (['active', 'active', 'active', 'inactive', 'suspended'] as const)[i % 5],
-  department: ['Engineering', 'Marketing', 'Sales', 'Design', 'Product'][i % 5],
+  role: ROLES[i % ROLES.length]!,
+  status: STATUSES[i % STATUSES.length]!,
+  department: DEPARTMENTS[i % DEPARTMENTS.length]!,
   joinedAt: new Date(2023, i % 12, (i % 28) + 1).toISOString(),
   lastActiveAt: new Date(Date.now() - i * 3600000 * 24).toISOString(),
   avatarUrl: `https://api.dicebear.com/8.x/notionists/svg?seed=${i}`,

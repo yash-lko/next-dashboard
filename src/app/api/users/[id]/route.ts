@@ -1,10 +1,8 @@
 // src/app/api/users/[id]/route.ts
 
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 import type { User } from '@/types/user';
-
-// Shared in-memory store (same as parent route.ts in a real app this would be a DB)
-const store: Record<string, User> = {};
 
 export async function GET(
   _req: NextRequest,
@@ -16,8 +14,8 @@ export async function GET(
   // Return a mock user for demo
   const user: User = {
     id: params.id,
-    name: 'Arjun Sharma',
-    email: 'arjun@acme.io',
+    name: 'Yash',
+    email: 'yas@acme.io',
     role: 'admin',
     status: 'active',
     department: 'Engineering',
@@ -42,11 +40,8 @@ export async function PATCH(
   return NextResponse.json({ data: updated, success: true });
 }
 
-export async function DELETE(
-  _req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(_req: NextRequest) {
   await new Promise((r) => setTimeout(r, 200));
-  // In production: await db.user.delete({ where: { id: params.id } })
+  // In production: await db.user.delete({ where: { id: 'userId' } })
   return NextResponse.json({ success: true }, { status: 204 });
 }
