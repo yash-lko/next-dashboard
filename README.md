@@ -8,7 +8,7 @@
 
 A **senior-level, portfolio-quality admin dashboard** built with Next.js 14 App Router, TypeScript, Tailwind CSS, Recharts, TanStack Query, Zustand, and React Hook Form + Zod. Every architectural decision mirrors patterns used in production SaaS products.
 
-**[Live Demo →](https://nexadmin-demo.vercel.app)**
+**[Live Demo →](nex-dashboard00.netlify.app)**
 
 ---
 
